@@ -1,3 +1,0 @@
-void myMalloc();
-
-void myFree();
