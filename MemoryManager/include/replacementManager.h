@@ -24,5 +24,6 @@ void printHeapMap();
 void *fakeMalloc(std::size_t size);
 void *fakeCalloc(std::size_t nmemb, std::size_t size);
 void fakeFree(void* ptr);
+void term(bool verbose);
 
 #endif

@@ -11,14 +11,18 @@
 #include "replacementManager.h"
 
 void *space;
-#if USE_REPLACEMENT_MANAGER
 std::list<mem> heap;
+#if USE_REPLACEMENT_MANAGER
 #if REPLACEMENT_MANAGER_VERBOSE
 bool ssss = initHeap(true);
 #else
 bool ssss = initHeap(false);
 #endif
 #endif
+
+void terminateFakeHeap(bool verbose){
+    term(verbose);
+}
 
 
 // The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.

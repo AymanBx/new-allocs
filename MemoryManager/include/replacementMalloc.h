@@ -5,5 +5,6 @@
 void *myMalloc(std::size_t size);
 void *myCalloc(std::size_t nmemb, std::size_t size);
 void myFree(void* ptr);
+void terminateFakeHeap(bool verbose);
 
 #endif

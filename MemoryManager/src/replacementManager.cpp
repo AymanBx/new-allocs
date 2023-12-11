@@ -152,60 +152,59 @@ void *fakeMalloc(size_t size){
     }
 
     #if ALGORITHM_CHOICE == WORST_FIT
-        // std::list<mem>::iterator it = std::next(heap.begin(), 2);
-        // heap.erase(it);
-        auto item = heap.begin();
-        std::advance(item, largest_index);
-        mem seg = *item;
+        if (largest_index != 0){
+            // std::list<mem>::iterator it = std::next(heap.begin(), 2);
+            // heap.erase(it);
+            auto item = heap.begin();
+            std::advance(item, largest_index);
+            mem seg = *item;
 
-        mem newItem{
-            true,
-            size,
-            seg.shift
-        };
-        mem newHole{
-            false,
-            seg.size - size,
-            seg.shift + size
-        };
+            mem newItem{
+                true,
+                size,
+                seg.shift
+            };
+            mem newHole{
+                false,
+                seg.size - size,
+                seg.shift + size
+            };
 
-        item = heap.erase(item);
-        item = heap.insert(item, newItem);
-        item++;
-        item = heap.insert(item, newHole);
+            item = heap.erase(item);
+            item = heap.insert(item, newItem);
+            item++;
+            item = heap.insert(item, newHole);
 
-        requested = static_cast<void*>(static_cast<char*>(space) + seg.shift);
-
+            requested = static_cast<void*>(static_cast<char*>(space) + seg.shift);
+        }
     #endif
 
     #if ALGORITHM_CHOICE == BEST_FIT
-        auto item = heap.begin();
-        std::advance(item, smallest_index);
-        mem seg = *item;
+        if (smallest_index != 0){
+            auto item = heap.begin();
+            std::advance(item, smallest_index);
+            mem seg = *item;
 
-        mem newItem{
-            true,
-            size,
-            seg.shift
-        };
-        mem newHole{
-            false,
-            seg.size - size,
-            seg.shift + size
-        };
+            mem newItem{
+                true,
+                size,
+                seg.shift
+            };
+            mem newHole{
+                false,
+                seg.size - size,
+                seg.shift + size
+            };
 
-        item = heap.erase(item);
-        item = heap.insert(item, newItem);
-        item++;
-        item = heap.insert(item, newHole);
+            item = heap.erase(item);
+            item = heap.insert(item, newItem);
+            item++;
+            item = heap.insert(item, newHole);
 
-        requested = static_cast<void*>(static_cast<char*>(space) + seg.shift);
-
-
+            requested = static_cast<void*>(static_cast<char*>(space) + seg.shift);
+        }
     #endif
 
-
-    
 
     return requested;
 }
@@ -230,23 +229,25 @@ void fakeFree(void* ptr){
         size_t shift = (size_t) (static_cast<char*>(ptr) - static_cast<char*>(space));
         bool previous=false,past=false;
         mem prevSeg, pastSeg;
+        bool found = false;
         for (auto item = heap.begin(); item != heap.end(); ++item) {
             mem seg = *item;
 
             if (seg.shift == shift && seg.isAllocated){
+                found = true;
                 item++;
                 pastSeg = *item;
                 item--;
                 past = !pastSeg.isAllocated;
 
                 if (!previous && !past){
-                    printf("no no\n");
+                    // printf("no no\n");
                     seg.isAllocated = false;
                     item = heap.erase(item);
                     item = heap.insert(item, seg);
                 }
                 else if (previous && !past){
-                    printf("yes: %ld - no\n", prevSeg.size);
+                    // printf("yes: %ld - no\n", prevSeg.size);
                     item = heap.erase(item);
                     item--;
                     item = heap.erase(item);
@@ -254,7 +255,7 @@ void fakeFree(void* ptr){
                     item = heap.insert(item, prevSeg);                    
                 }
                 else if (!previous && past){
-                    printf("no - yes: %ld\n", pastSeg.size);
+                    // printf("no - yes: %ld\n", pastSeg.size);
                     seg.isAllocated = false;
                     item = heap.erase(item);
                     item = heap.erase(item);
@@ -262,7 +263,7 @@ void fakeFree(void* ptr){
                     item = heap.insert(item, seg);
                 }
                 else{
-                    printf("yes: %ld - yes: %ld\n", prevSeg.size, pastSeg.size);
+                    // printf("yes: %ld - yes: %ld\n", prevSeg.size, pastSeg.size);
                     item = heap.erase(item);
                     item = heap.erase(item);
                     item--;
@@ -279,8 +280,26 @@ void fakeFree(void* ptr){
             else if (seg.isAllocated)
                 previous = false;
         }
+        if(!found){
+            printf("\nFree to an unallocated pointer.\n");
+            exit(15);
+        }
     }
 }
 
+
+void term(bool verbose){
+    auto item = heap.begin();
+    mem seg = *item;
+    if (!seg.isAllocated && seg.size == HEAPSIZE){
+        free(space);
+        if (verbose)
+            printf("\nTerminated successfully.\n");
+    }
+    else{
+        printf("\nAllocated memory wasn't freed.\n");
+        exit(1);
+    }
+}
 
 

@@ -38,5 +38,31 @@ int main(){
     free(something3);
     printf("8\n");
     
+    
+    
+    #if USE_REPLACEMENT_MANAGER
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)0));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)210));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)230));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)1210));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)1450));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)1600));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)1860));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)1880));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)2030));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)2050));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)2550));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)2570));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)2820));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)2830));
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)3290));
+    // free(static_cast<void*>(static_cast<char*>(space) + (size_t)3300));
+    #if REPLACEMENT_MANAGER_VERBOSE
+    terminateFakeHeap(true);
+    #else
+    terminateFakeHeap(false);
+    #endif
+    #endif
+
     return 0;
 }
