@@ -1,0 +1,35 @@
+\doxysection{replacement\+Manager.\+h}
+\hypertarget{replacementManager_8h_source}{}\label{replacementManager_8h_source}\index{MemoryManager/include/replacementManager.h@{MemoryManager/include/replacementManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ REPLACEMENT\_MANAGER\_H}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ REPLACEMENT\_MANAGER\_H}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00005}00005\ \textcolor{preprocessor}{\#define\ EMPTY\_HEAP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00006}00006\ \textcolor{preprocessor}{\#define\ FIRST\_FIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00007}00007\ \textcolor{preprocessor}{\#define\ BEST\_FIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 200}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ WORST\_FIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 300}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00009}00009\ \textcolor{preprocessor}{\#define\ ALGORITHM\_CHOICE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WORST\_FIT}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00012}00012\ \textcolor{comment}{//\ Private\ structs}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00013}\mbox{\hyperlink{structmem}{00013}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmem}{mem}}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//\ void*\ ptr;}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ isAllocated;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ shift;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00019}00019\ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00022}00022\ \textcolor{keywordtype}{bool}\ initHeap(\textcolor{keywordtype}{bool}\ verbose);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00023}00023\ \textcolor{keywordtype}{void}\ printHeapMap();}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00024}00024\ \textcolor{keywordtype}{void}\ *fakeMalloc(std::size\_t\ size);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00025}00025\ \textcolor{keywordtype}{void}\ *fakeCalloc(std::size\_t\ nmemb,\ std::size\_t\ size);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00026}00026\ \textcolor{keywordtype}{void}\ fakeFree(\textcolor{keywordtype}{void}*\ ptr);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00027}00027\ \textcolor{keywordtype}{void}\ term(\textcolor{keywordtype}{bool}\ verbose);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8h_source_l00029}00029\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

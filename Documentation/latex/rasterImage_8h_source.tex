@@ -1,0 +1,60 @@
+\doxysection{raster\+Image.\+h}
+\hypertarget{rasterImage_8h_source}{}\label{rasterImage_8h_source}\index{ImageLibrary/include/rasterImage.h@{ImageLibrary/include/rasterImage.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ RASTER\_IMAGE\_H}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ RASTER\_IMAGE\_H}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00007}00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00009}00009\ \ \ \ \ \ \ \ \ UNKNOWN\_IMAGE\_FILE\_TYPE\ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00010}00010\ \ \ \ \ \ \ \ \ TGA\_COLOR\_FILE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 24-\/bit\ color\ image}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ TGA\_GRAY\_FILE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 8-\/bit\ gray-\/level\ image}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ PPM\_FILE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 24-\/bit\ color\ image}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ PGM\_FILE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 8-\/bit\ gray-\/level\ image}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00014}00014\ \}\ ImageFileType;}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00021}00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ RGBA32\_RASTER,}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ GRAY\_RASTER,}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ FLOAT\_RASTER}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00036}00036\ \}\ ImageType;}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00042}\mbox{\hyperlink{structRasterImage}{00042}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00046}\mbox{\hyperlink{structRasterImage_a4479a994a2f19c14d9c68a19c9d8061c}{00046}}\ \ \ \ \ ImageType\ \mbox{\hyperlink{structRasterImage_a4479a994a2f19c14d9c68a19c9d8061c}{type}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00050}\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{00050}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00054}\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{00054}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00058}\mbox{\hyperlink{structRasterImage_a07838a57d442a921e0515f67c0092979}{00058}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRasterImage_a07838a57d442a921e0515f67c0092979}{bytesPerPixel}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00064}\mbox{\hyperlink{structRasterImage_a149ca55ed5a4afa03eba3897e6ef09d6}{00064}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRasterImage_a149ca55ed5a4afa03eba3897e6ef09d6}{bytesPerRow}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00076}\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{00076}}\ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00078}00078\ \textcolor{comment}{//\ \ /*\ Similarly\ here\ the\ 2D\ raster\ was\ cast\ to\ a\ void*\ pointer}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00079}00079\ \textcolor{comment}{//\ \ \ *\ \ and\ would\ need\ to\ be\ cast\ back\ to\ the\ proper\ type\ to\ be\ used,\ e.g.}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00080}00080\ \textcolor{comment}{//\ \ \ *\ \ <ul>}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00081}00081\ \textcolor{comment}{//\ \ \ *\ \ \ \ \ \ <li><tt>(int**)\ raster</tt></li>}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00082}00082\ \textcolor{comment}{//\ \ \ *\ \ \ \ \ \ <li><tt>(unsigned\ char**)\ raster</tt></li>}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00083}00083\ \textcolor{comment}{//\ \ \ *\ \ \ \ \ \ <li><tt>(int**)\ raster</tt></li>}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00084}00084\ \textcolor{comment}{//\ \ \ *\ \ \ \ \ \ <li><tt>(float**)\ raster</tt></li>}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00085}00085\ \textcolor{comment}{//\ \ \ *\ \ </ul>}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00086}00086\ \textcolor{comment}{//\ \ \ */}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00087}00087\ \textcolor{comment}{//\ \ void*\ raster2D;}}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00088}00088\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00089}00089\ \}\ \mbox{\hyperlink{structRasterImage}{RasterImage}};}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00097}00097\ \mbox{\hyperlink{structRasterImage}{RasterImage}}\ newImage(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height,\ ImageType\ type);}
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{rasterImage_8h_source_l00100}00100\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ RASTER\_IMAGE\_H}}
+
+\end{DoxyCode}

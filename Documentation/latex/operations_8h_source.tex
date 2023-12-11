@@ -1,0 +1,51 @@
+\doxysection{operations.\+h}
+\hypertarget{operations_8h_source}{}\label{operations_8h_source}\index{ImageLibrary/include/operations.h@{ImageLibrary/include/operations.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ OPERATIONS\_H}}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ OPERATIONS\_H}}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}rasterImage.h"{}}}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00007}00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00008}00008\ \ \ \ \ \ \ \ \ WEIRD\_VALUE\ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00009}00009\ \ \ \ \ \ \ \ \ HIGHT\_ONLY,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00010}00010\ \ \ \ \ \ \ \ \ HIGHT\_VERBOSE,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ WIDTH\_ONLY,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ WIDTH\_VERBOSE,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ HIGHT\_WIDTH,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ HIGHT\_WIDTH\_VERBOSE}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00015}00015\ \}\ RequestedDemensions;}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00018}00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ WEIRD\_COLOR\ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ RED,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ GREEN,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ BLUE}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00023}00023\ \}\ ColorChannel;}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00025}00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ WEIRD\_ROTATION\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ LEFT\ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ LEFTLEFT\ =\ -\/2,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ RIGHT\ =\ +1,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ RIGHTRIGHT\ =\ +2,}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00031}00031\ \}\ Rotation;}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00039}00039\ \textcolor{keywordtype}{char}*\ getDimensions(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ image,\ RequestedDemensions\ valueRequested);}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00042}00042\ \textcolor{keywordtype}{void}\ splitImage(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ inImage,\ \mbox{\hyperlink{structRasterImage}{RasterImage}}*\ outImage,\ ColorChannel\ color);}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00045}00045\ \textcolor{keywordtype}{void}\ cropImage(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ inImage,\ \mbox{\hyperlink{structRasterImage}{RasterImage}}*\ outImage,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00048}00048\ \textcolor{keywordtype}{void}\ rotateImage(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ inImage,\ \mbox{\hyperlink{structRasterImage}{RasterImage}}*\ outImage,\ Rotation\ x);}
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{operations_8h_source_l00051}00051\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ OPERATIONS\_H}}
+
+\end{DoxyCode}

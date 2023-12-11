@@ -1,0 +1,297 @@
+\doxysection{replacement\+Manager.\+cpp}
+\hypertarget{replacementManager_8cpp_source}{}\label{replacementManager_8cpp_source}\index{MemoryManager/src/replacementManager.cpp@{MemoryManager/src/replacementManager.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}heapSize.h"{}}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}replacementManager.h"{}}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00016}00016\ \textcolor{comment}{//\ Global\ variables}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00017}00017\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}*\ space;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00018}00018\ \textcolor{keyword}{extern}\ std::list<mem>\ heap;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00020}00020\ \textcolor{comment}{//\ bool\ initialized\ =\ initHeap(true);}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00023}00023\ \textcolor{keywordtype}{bool}\ initHeap(\textcolor{keywordtype}{bool}\ verbose)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00024}00024\ \ \ \ \ space\ =\ (\textcolor{keywordtype}{void}*)\ malloc(HEAPSIZE);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\ \ \ \ \#if\ EMPTY\_HEAP}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00026}00026\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},HEAPSIZE,0\});}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{comment}{//\ Hard\ coded\ test\ cases}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ \#if\ ALGORITHM\_CHOICE\ ==\ FIRST\_FIT}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00030}00030\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},210,0\});\ \ \ \ \ \ \ \textcolor{comment}{//\ 00\ \ -\/-\/\ Best\ for\ 160\ \ \ \ \ \ \ \ -\/-\/\ First\ for\ 60}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00031}00031\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},20,210\});\ \ \ \ \ \ \ \textcolor{comment}{//\ 01\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00032}00032\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},455,230\});\ \ \ \ \ \textcolor{comment}{//\ 02\ \ -\/-\/\ First\ for\ 440\ \ \ \ \ \ \ -\/-\/\ Best\ for\ 450}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00033}00033\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},525,685\});\ \ \ \ \ \ \textcolor{comment}{//\ 03\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00034}00034\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},240,1210\});\ \ \ \ \textcolor{comment}{//\ 04\ \ -\/-\/\ First\ for\ 160\ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00035}00035\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},150,1450\});\ \ \ \ \ \textcolor{comment}{//\ 05\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00036}00036\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},260,1600\});\ \ \ \ \textcolor{comment}{//\ 06\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00037}00037\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},20,1860\});\ \ \ \ \ \ \textcolor{comment}{//\ 07\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00038}00038\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},150,1880\});\ \ \ \ \textcolor{comment}{//\ 08\ \ -\/-\/\ Best\ for\ 60\ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00039}00039\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},20,2030\});\ \ \ \ \ \ \textcolor{comment}{//\ 09\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00040}00040\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},500,2050\});\ \ \ \ \textcolor{comment}{//\ 10\ \ -\/-\/\ Worst\ for\ 440\ \&\ 60\ \ -\/-\/\ First\ for\ 450\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00041}00041\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},20,2550\});\ \ \ \ \ \ \textcolor{comment}{//\ 11\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00042}00042\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},250,2570\});\ \ \ \ \textcolor{comment}{//\ 12\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00043}00043\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},10,2820\});\ \ \ \ \ \ \textcolor{comment}{//\ 13\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00044}00044\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},460,2830\});\ \ \ \ \textcolor{comment}{//\ 14\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ Worst\ for\ 160}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00045}00045\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{true},10,3290\});\ \ \ \ \ \ \textcolor{comment}{//\ 15\ \ -\/-\/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\ }}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00046}00046\ \ \ \ \ heap.push\_back(\{\textcolor{keyword}{false},450,3300\});\ \ \ \ \textcolor{comment}{//\ 16\ \ -\/-\/\ Best\ for\ 440\ \ \ \ \ \ \ \ -\/-\/\ Worst\ for\ 450}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ \#endif}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00048}00048\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (verbose)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Initialized\ fake\ heap\ with\ size\ \%d."{}},\ HEAPSIZE);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ printHeapMap();}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00054}00054\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00056}00056\ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00063}00063\ \textcolor{keywordtype}{void}\ printHeapMap()\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00064}00064\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nMemory\ Status:\(\backslash\)nSize:\ \%d\(\backslash\)n"{}},\ HEAPSIZE);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{int}\ index=0;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ free=0,\ filled=0;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&item\ :\ heap)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ std::string\ status;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item.isAllocated)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ \textcolor{stringliteral}{"{}Allocated"{}};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ filled+=item.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ \textcolor{stringliteral}{"{}Free"{}};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ free+=item.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Seg\ \%d:\ Size\ (\%ld)\ -\/\ \%s\(\backslash\)n"{}},\ index,\ item.size,\ status.c\_str());}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00080}00080\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Filled:\ \%d,\ Free:\ \%d\(\backslash\)n"{}},\ (\textcolor{keywordtype}{int})\ filled,\ (\textcolor{keywordtype}{int})\ free);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00086}00086\ \textcolor{keywordtype}{void}\ *fakeMalloc(\textcolor{keywordtype}{size\_t}\ size)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ The\ pointer\ to\ the\ allocated\ memory}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{void}*\ requested\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ Handle\ illegal\ calls}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requested;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ To\ comapare\ available\ sizes}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ best=HEAPSIZE+1,\ worst=0;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ To\ hold\ the\ indecies\ of\ best\ and\ worst\ segments}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordtype}{int}\ smallest\_index=-\/1,\ largest\_index=-\/1;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{comment}{//\ Search\ for\ available\ segments}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ heap.begin();\ it\ !=\ heap.end();\ ++it)\ \{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ item\ =\ *it;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Catch\ an\ available\ memory\ segment}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!item.isAllocated\ \&\&\ item.size\ >=\ size)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Comparing\ item.\ its\ size:\ \%ld.\ required:\ \%ld\(\backslash\)n"{}},\ item.size,\ size);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ case\ of\ a\ perfect\ fit}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ and\ return\ the\ pointer\ immedietly}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item.size\ ==\ size)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item.isAllocated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ heap.erase(it);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ heap.insert(it,\ item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requested\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(space)\ +\ item.shift);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ requested;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ fit\ case}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ and\ return\ the\ first\ available\ memory\ segment}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00119}00119\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#if\ ALGORITHM\_CHOICE\ ==\ FIRST\_FIT}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ newItem\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ size,}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item.shift}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ newHole\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item.size\ -\/\ size,}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item.shift\ +\ size}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ heap.erase(it);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ heap.insert(it,\ newItem);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ heap.insert(it,\ newHole);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requested\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(space)\ +\ item.shift);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00138}00138\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item.size\ <\ best)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\ =\ item.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ smallest\_index\ =\ index;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item.size\ >\ worst)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ worst\ =\ item.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largest\_index\ =\ index;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00152}00152\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00154}00154\ \textcolor{preprocessor}{\ \ \ \ \#if\ ALGORITHM\_CHOICE\ ==\ WORST\_FIT}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (largest\_index\ >=\ 0)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::list<mem>::iterator\ it\ =\ std::next(heap.begin(),\ 2);}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ heap.erase(it);}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ item\ =\ heap.begin();}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ std::advance(item,\ largest\_index);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ seg\ =\ *item;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ newItem\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ size,}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.shift}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ newHole\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.size\ -\/\ size,}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.shift\ +\ size}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ newItem);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ item++;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ newHole);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ requested\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(space)\ +\ seg.shift);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00179}00179\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00181}00181\ \textcolor{preprocessor}{\ \ \ \ \#if\ ALGORITHM\_CHOICE\ ==\ BEST\_FIT}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (smallest\_index\ >=\ 0)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ item\ =\ heap.begin();}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ std::advance(item,\ smallest\_index);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ seg\ =\ *item;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ newItem\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ size,}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.shift}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ newHole\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.size\ -\/\ size,}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.shift\ +\ size}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ newItem);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ item++;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ newHole);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ requested\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(space)\ +\ seg.shift);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00205}00205\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{return}\ requested;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00209}00209\ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00213}00213\ \textcolor{keywordtype}{void}\ *fakeCalloc(\textcolor{keywordtype}{size\_t}\ nmemb,\ \textcolor{keywordtype}{size\_t}\ size)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00214}00214\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ <=\ 0\ ||\ nmemb\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00216}00216\ \ \ \ \ \textcolor{keywordtype}{int}\ fullSize\ =\ nmemb\ *\ size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00217}00217\ \ \ \ \ \textcolor{keywordtype}{char}\ *allocated\ =\ (\textcolor{keywordtype}{char}*)\ fakeMalloc(fullSize);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00218}00218\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i<fullSize;\ i++)}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ allocated[i]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00221}00221\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00222}00222\ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00226}00226\ \textcolor{keywordtype}{void}\ fakeFree(\textcolor{keywordtype}{void}*\ ptr)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00227}00227\ \ \ \ \ \textcolor{keywordflow}{if}\ (ptr\ !=\ \textcolor{keyword}{nullptr})\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ shift\ =\ (size\_t)\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(ptr)\ -\/\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(space));}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ previous=\textcolor{keyword}{false},past=\textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ prevSeg,\ pastSeg;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ item\ =\ heap.begin();\ item\ !=\ heap.end();\ ++item)\ \{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ seg\ =\ *item;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (seg.shift\ ==\ shift\ \&\&\ seg.isAllocated)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item++;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pastSeg\ =\ *item;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item-\/-\/;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ past\ =\ !pastSeg.isAllocated;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!previous\ \&\&\ !past)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ printf("{}no\ no\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.isAllocated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ seg);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (previous\ \&\&\ !past)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ printf("{}yes:\ \%ld\ -\/\ no\(\backslash\)n"{},\ prevSeg.size);}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item-\/-\/;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prevSeg.size\ +=\ seg.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ prevSeg);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!previous\ \&\&\ past)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ printf("{}no\ -\/\ yes:\ \%ld\(\backslash\)n"{},\ pastSeg.size);}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.isAllocated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seg.size\ +=\ pastSeg.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ seg);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ printf("{}yes:\ \%ld\ -\/\ yes:\ \%ld\(\backslash\)n"{},\ prevSeg.size,\ pastSeg.size);}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item-\/-\/;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.erase(item);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prevSeg.size\ +=\ seg.size\ +\ pastSeg.size;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ heap.insert(item,\ prevSeg);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!seg.isAllocated)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ previous\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prevSeg\ =\ *item;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (seg.isAllocated)}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ previous\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!found)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nFree\ to\ an\ unallocated\ pointer.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ exit(15);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00286}00286\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00287}00287\ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00290}00290\ \textcolor{keywordtype}{void}\ term(\textcolor{keywordtype}{bool}\ verbose)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00291}00291\ \ \ \ \ \textcolor{keyword}{auto}\ item\ =\ heap.begin();}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00292}00292\ \ \ \ \ \mbox{\hyperlink{structmem}{mem}}\ seg\ =\ *item;}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{if}\ (!seg.isAllocated\ \&\&\ seg.size\ ==\ HEAPSIZE)\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ free(space);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (verbose)}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nTerminated\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00297}00297\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00298}00298\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00299}00299\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nAllocated\ memory\ wasn't\ freed.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00301}00301\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00302}00302\ \}}
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{replacementManager_8cpp_source_l00304}00304\ }
+
+\end{DoxyCode}

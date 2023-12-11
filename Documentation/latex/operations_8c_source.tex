@@ -1,0 +1,142 @@
+\doxysection{operations.\+c}
+\hypertarget{operations_8c_source}{}\label{operations_8c_source}\index{ImageLibrary/src/operations.c@{ImageLibrary/src/operations.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}rasterImage.h"{}}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}operations.h"{}}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00013}00013\ \textcolor{keywordtype}{char}*\ getDimensions(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ image,\ RequestedDemensions\ valueRequested)\{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{char}*\ message\ =\ (\textcolor{keywordtype}{char}*)malloc(35);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{switch}\ (valueRequested)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{case}\ HIGHT\_ONLY:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00019}00019\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ image-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{case}\ HIGHT\_VERBOSE:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00023}00023\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}Hight:\ \%d\(\backslash\)n"{}},\ image-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{case}\ WIDTH\_ONLY:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ image-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{case}\ WIDTH\_VERBOSE:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00031}00031\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}Width:\ \%d\(\backslash\)n"{}},\ image-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{case}\ HIGHT\_WIDTH:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}\%d\ \%d\(\backslash\)n"{}},\ image-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}},\ image-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{case}\ HIGHT\_WIDTH\_VERBOSE:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}Width:\ \%d,\ Hight:\ \%d\(\backslash\)n"{}},\ image-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}},\ image-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ sprintf(message,\ \textcolor{stringliteral}{"{}Something\ went\ terribly\ wrong!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{return}\ message;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00050}00050\ \textcolor{keywordtype}{void}\ splitImage(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ inImage,\ \mbox{\hyperlink{structRasterImage}{RasterImage}}*\ outImage,\ ColorChannel\ color)\{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{int}*\ inRaster\ =\ (\textcolor{keywordtype}{int}*)(inImage-\/>\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{int}*\ outRaster\ =\ (\textcolor{keywordtype}{int}*)(outImage-\/>\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i=0;\ i<inImage-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}};\ i++)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ j=0;\ j<inImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}};\ j++)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ inRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (inRaster\ +\ i*inImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}\ +\ j);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ outRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (outRaster\ +\ i*outImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}\ +\ j);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ rgba[0]\ -\/>\ red,\ rgba[1]\ -\/>\ green,\ rgba[2]\ -\/>\ blue,\ rgba[3]\ -\/>\ alpha}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[color]\ =\ inRgba[color];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00069}00069\ \textcolor{keywordtype}{void}\ cropImage(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ inImage,\ \mbox{\hyperlink{structRasterImage}{RasterImage}}*\ outImage,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{int}*\ inRaster\ =\ (\textcolor{keywordtype}{int}*)(inImage-\/>\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{int}*\ outRaster\ =\ (\textcolor{keywordtype}{int}*)(outImage-\/>\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i=0;\ i<inImage-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}};\ i++)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ j=0;\ j<inImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}};\ j++)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ y\ \&\&\ j\ >=\ x)\{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ (y\ +\ outImage-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}}\ -\/\ 1)\ \&\&\ j\ <\ (x\ +\ outImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}\ -\/\ 1))\{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ inRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (inRaster\ +\ i*inImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}\ +\ j);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ outRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (outRaster\ +\ (i-\/y)*outImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}\ +\ (j-\/x));}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ rgba[0]\ -\/>\ red,\ rgba[1]\ -\/>\ green,\ rgba[2]\ -\/>\ blue,\ rgba[3]\ -\/>\ alpha}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[0]\ =\ inRgba[0];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[1]\ =\ inRgba[1];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[2]\ =\ inRgba[2];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[3]\ =\ inRgba[3];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00092}00092\ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00095}00095\ \textcolor{keywordtype}{void}\ rotateImage(\mbox{\hyperlink{structRasterImage}{RasterImage}}*\ inImage,\ \mbox{\hyperlink{structRasterImage}{RasterImage}}*\ outImage,\ Rotation\ x)\{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00096}00096\ \ \ \ \ \textcolor{keywordtype}{int}*\ inRaster\ =\ (\textcolor{keywordtype}{int}*)(inImage-\/>\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00097}00097\ \ \ \ \ \textcolor{keywordtype}{int}*\ outRaster\ =\ (\textcolor{keywordtype}{int}*)(outImage-\/>\mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}});}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00098}00098\ \ \ \ \ \textcolor{keywordtype}{int}\ inHeight\ =\ inImage-\/>\mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00099}00099\ \ \ \ \ \textcolor{keywordtype}{int}\ inWidth\ =\ inImage-\/>\mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ int\ outHeight\ =\ outImage-\/>height;}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ int\ outWidth\ =\ outImage-\/>width;}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ row=0;\ row<inHeight;\ row++)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ col=0;\ col<inWidth;\ col++)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ inRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (inRaster\ +\ row*inWidth\ +\ col);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ outRgba;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ new\_r,\ new\_c;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (x)}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RIGHT:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_r\ =\ col;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_c\ =\ inHeight-\/row-\/1;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (outRaster\ +\ new\_r*inHeight\ +\ new\_c);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LEFTLEFT:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RIGHTRIGHT:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_r\ =\ inHeight-\/row-\/1;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_c\ =\ inWidth-\/col-\/1;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (outRaster\ +\ new\_r*inHeight\ +\ new\_c);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LEFT:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_r\ =\ inWidth-\/col-\/1;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_c\ =\ row;}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ (outRaster\ +\ new\_r*inHeight\ +\ new\_c);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Something\ went\ terribly\ wrong.\ Rotation:\ \%d"{}},\ x);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exit(404);}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[0]\ =\ inRgba[0];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[1]\ =\ inRgba[1];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[2]\ =\ inRgba[2];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outRgba[3]\ =\ inRgba[3];}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{operations_8c_source_l00142}00142\ \}}
+
+\end{DoxyCode}

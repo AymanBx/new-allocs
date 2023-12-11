@@ -1,0 +1,102 @@
+\doxysection{Raster\+Image Struct Reference}
+\hypertarget{structRasterImage}{}\label{structRasterImage}\index{RasterImage@{RasterImage}}
+
+
+{\ttfamily \#include $<$raster\+Image.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Image\+Type \mbox{\hyperlink{structRasterImage_a4479a994a2f19c14d9c68a19c9d8061c}{type}}
+\item 
+unsigned int \mbox{\hyperlink{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}{height}}
+\item 
+unsigned int \mbox{\hyperlink{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}{width}}
+\item 
+unsigned int \mbox{\hyperlink{structRasterImage_a07838a57d442a921e0515f67c0092979}{bytes\+Per\+Pixel}}
+\item 
+unsigned int \mbox{\hyperlink{structRasterImage_a149ca55ed5a4afa03eba3897e6ef09d6}{bytes\+Per\+Row}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}{raster}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the data type to store all relevant information about an image. After some thought, I have decided to store the 1D and 2D rasters as void\texorpdfstring{$\ast$}{*} rather than having separate unsigned char and float pointers 
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00042}{42}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structRasterImage_a07838a57d442a921e0515f67c0092979}\label{structRasterImage_a07838a57d442a921e0515f67c0092979} 
+\index{RasterImage@{RasterImage}!bytesPerPixel@{bytesPerPixel}}
+\index{bytesPerPixel@{bytesPerPixel}!RasterImage@{RasterImage}}
+\doxysubsubsection{\texorpdfstring{bytesPerPixel}{bytesPerPixel}}
+{\footnotesize\ttfamily unsigned int Raster\+Image\+::bytes\+Per\+Pixel}
+
+Pixel depth 
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00058}{58}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+\Hypertarget{structRasterImage_a149ca55ed5a4afa03eba3897e6ef09d6}\label{structRasterImage_a149ca55ed5a4afa03eba3897e6ef09d6} 
+\index{RasterImage@{RasterImage}!bytesPerRow@{bytesPerRow}}
+\index{bytesPerRow@{bytesPerRow}!RasterImage@{RasterImage}}
+\doxysubsubsection{\texorpdfstring{bytesPerRow}{bytesPerRow}}
+{\footnotesize\ttfamily unsigned int Raster\+Image\+::bytes\+Per\+Row}
+
+Number of bytes per row (which may be larger than bytes\+Per\+Pixel \texorpdfstring{$\ast$}{*} nb\+Cols if rows are padded to a particular word length (e.\+g. multiple of 16 or 32)) 
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00064}{64}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+\Hypertarget{structRasterImage_a85508d66a7f21584b3bd45305e0da93e}\label{structRasterImage_a85508d66a7f21584b3bd45305e0da93e} 
+\index{RasterImage@{RasterImage}!height@{height}}
+\index{height@{height}!RasterImage@{RasterImage}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily unsigned int Raster\+Image\+::height}
+
+Number of rows (height) of the image 
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00050}{50}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+\Hypertarget{structRasterImage_a9099109bbc1bc513113df4a17f5854ae}\label{structRasterImage_a9099109bbc1bc513113df4a17f5854ae} 
+\index{RasterImage@{RasterImage}!raster@{raster}}
+\index{raster@{raster}!RasterImage@{RasterImage}}
+\doxysubsubsection{\texorpdfstring{raster}{raster}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} Raster\+Image\+::raster}
+
+Pointer to the image data, cast to a void\texorpdfstring{$\ast$}{*} pointer. To access the data, you would have to cast the pointer to the proper type, e.\+g. 
+\begin{DoxyItemize}
+\item {\ttfamily (int\texorpdfstring{$\ast$}{*}) raster} 
+\item {\ttfamily (unsigned char\texorpdfstring{$\ast$}{*}) raster} 
+\item {\ttfamily (int\texorpdfstring{$\ast$}{*}) raster} 
+\item {\ttfamily (float\texorpdfstring{$\ast$}{*}) raster} 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00076}{76}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+\Hypertarget{structRasterImage_a4479a994a2f19c14d9c68a19c9d8061c}\label{structRasterImage_a4479a994a2f19c14d9c68a19c9d8061c} 
+\index{RasterImage@{RasterImage}!type@{type}}
+\index{type@{type}!RasterImage@{RasterImage}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily Image\+Type Raster\+Image\+::type}
+
+Type of image stored 
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00046}{46}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+\Hypertarget{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7}\label{structRasterImage_ac38be5d7e9aeb6891e02e1e94797d4c7} 
+\index{RasterImage@{RasterImage}!width@{width}}
+\index{width@{width}!RasterImage@{RasterImage}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily unsigned int Raster\+Image\+::width}
+
+Number of columns (width) of the image 
+
+Definition at line \mbox{\hyperlink{rasterImage_8h_source_l00054}{54}} of file \mbox{\hyperlink{rasterImage_8h_source}{raster\+Image.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Image\+Library/include/raster\+Image.\+h\end{DoxyCompactItemize}
