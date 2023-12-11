@@ -9,13 +9,20 @@
 #define ALGORITHM_CHOICE 				WORST_FIT
 
 
+// Private structs
+struct mem
+{
+    // void* ptr;
+    bool isAllocated;
+    size_t size;
+    size_t shift;
+};
 
-#include <cstdio>
 
+bool initHeap(bool verbose);
 void printHeapMap();
 void *fakeMalloc(std::size_t size);
 void *fakeCalloc(std::size_t nmemb, std::size_t size);
 void fakeFree(void* ptr);
-bool initHeap();
 
 #endif

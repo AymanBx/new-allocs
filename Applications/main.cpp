@@ -14,18 +14,29 @@
 using namespace std;
 
 int main(){
-    extern void *space;
 
+    printf("0\n");
     char* something1 = (char*) malloc(440);
+    printf("1\n");
     char* something0 = (char*) malloc(60);
+    printf("2\n");
     char* something2 = (char*) malloc(160);
+    printf("3\n");
     char* something3 = (char*) malloc(450);
+    printf("4\n");
 
     free(something2);
+    printf("5\n");
+    #if USE_REPLACEMENT_MANAGER
+    extern void *space;
     free(static_cast<void*>(static_cast<char*>(space) + (size_t)685));
+    #endif
     free(something0);
+    printf("6\n");
     free(something1);
+    printf("7\n");
     free(something3);
+    printf("8\n");
     
     return 0;
 }

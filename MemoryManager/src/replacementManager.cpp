@@ -6,35 +6,23 @@
 
 #include <list>
 #include <string>
-#include <iostream>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "heapSize.h"
 #include "replacementManager.h"
 
 
-// Private structs
-struct mem
-{
-    // void* ptr;
-    bool isAllocated;
-    size_t size;
-    size_t shift;
-};
-
-// Function signitures
-bool initHeap();
 
 // Global variables
-void* space;
-std::list<mem> heap;
-bool initialized = initHeap();
+extern void* space;
+extern std::list<mem> heap;
+
+// bool initialized = initHeap(true);
 
 
 // yoyoyo
-bool initHeap(){
+bool initHeap(bool verbose){
     space = (void*) malloc(HEAPSIZE);
-
     #if EMPTY_HEAP
     heap.push_back({false,HEAPSIZE,0});
     #else
@@ -60,9 +48,10 @@ bool initHeap(){
     // #endif
     #endif
 
-    
-    printf("Initialized fake heap with size %d.", HEAPSIZE);
-    printHeapMap();
+    if (verbose){
+        printf("Initialized fake heap with size %d.", HEAPSIZE);
+        printHeapMap();
+    }
     
     return true;
 }
@@ -86,8 +75,7 @@ void printHeapMap(){
             status = "Free";
             free+=item.size;
         }
-        printf("Seg %d: Size (%ld) - ", index, item.size);
-        std::cout << status << std::endl;
+        printf("Seg %d: Size (%ld) - %s\n", index, item.size, status.c_str());
         index++;
     }
     printf("Filled: %d, Free: %d\n", (int) filled, (int) free);
@@ -97,7 +85,6 @@ void printHeapMap(){
 // The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.
 // The memory is not initialized.
 void *fakeMalloc(size_t size){
-    
     // The pointer to the allocated memory
     void* requested = nullptr;
 

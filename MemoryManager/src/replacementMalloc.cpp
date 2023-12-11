@@ -4,11 +4,21 @@
 /// manager mode).
 
 
-#include <stdio.h>
+#include <list>
 #include <cstdio>
+#include <stdio.h>
 #include "mallocChoice.h"
 #include "replacementManager.h"
 
+void *space;
+#if USE_REPLACEMENT_MANAGER
+std::list<mem> heap;
+#if REPLACEMENT_MANAGER_VERBOSE
+bool ssss = initHeap(true);
+#else
+bool ssss = initHeap(false);
+#endif
+#endif
 
 
 // The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.
