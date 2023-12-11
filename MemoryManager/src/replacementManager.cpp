@@ -34,31 +34,34 @@ bool initialized = initHeap();
 // yoyoyo
 bool initHeap(){
     space = (void*) malloc(HEAPSIZE);
-    
 
-    // Hard coded test cases
-    #if !EMPTY_HEAP
-    // #if ALGORITHM_CHOICE == FIRST_FIT
-    heap.push_back({false,200,0});     // 0
-    heap.push_back({true,500,200});    // 1
-    heap.push_back({false,240,700});   // 2
-    heap.push_back({true,150,940});    // 3
-    heap.push_back({false,260,1090});  // 4
-    heap.push_back({false,500,1350});  // 5
-    heap.push_back({false,250,1850});  // 6
-    heap.push_back({false,450,2100});  // 7 
-    heap.push_back({false,450,2550});   // 8
-    // #endif
-    #else
+    #if EMPTY_HEAP
     heap.push_back({false,HEAPSIZE,0});
+    #else
+    // Hard coded test cases
+    // #if ALGORITHM_CHOICE == FIRST_FIT
+    heap.push_back({false,210,0});       // 00  -- Best for 160        -- First for 60
+    heap.push_back({true,20,210});       // 01  --                     -- 
+    heap.push_back({false,455,230});     // 02  -- First for 440       -- Best for 450
+    heap.push_back({true,525,685});      // 03  --                     -- 
+    heap.push_back({false,240,1210});    // 04  -- First for 160       -- 
+    heap.push_back({true,150,1450});     // 05  --                     -- 
+    heap.push_back({false,260,1600});    // 06  --                     -- 
+    heap.push_back({true,20,1860});      // 07  --                     -- 
+    heap.push_back({false,150,1880});    // 08  -- Best for 60         -- 
+    heap.push_back({true,20,2030});      // 09  --                     -- 
+    heap.push_back({false,500,2050});    // 10  -- Worst for 440 & 60  -- First for 450 
+    heap.push_back({true,20,2550});      // 11  --                     -- 
+    heap.push_back({false,250,2570});    // 12  --                     -- 
+    heap.push_back({true,10,2820});      // 13  --                     -- 
+    heap.push_back({false,460,2830});    // 14  --                     -- Worst for 160
+    heap.push_back({true,10,3290});      // 15  --                     -- 
+    heap.push_back({false,450,3300});    // 16  -- Best for 440        -- Worst for 450
+    // #endif
     #endif
 
-
-
-
-
     
-    printf("Initialized fake heap with size %d.\n", HEAPSIZE);
+    printf("Initialized fake heap with size %d.", HEAPSIZE);
     printHeapMap();
     
     return true;
@@ -70,19 +73,24 @@ bool initHeap(){
 // Add a “verbose” state variable to your memory manager so that when in “verbose” mode the
 // memory manager prints the heap map following each memory allocating or freeing operation.
 void printHeapMap(){
-    printf("\nMemory Status:\nSize:%d\n", HEAPSIZE);
+    printf("\nMemory Status:\nSize: %d\n", HEAPSIZE);
     int index=0;
+    size_t free=0, filled=0;
     for (const auto &item : heap){
         std::string status;
-        if (item.isAllocated)
+        if (item.isAllocated){
             status = "Allocated";
-        else
+            filled+=item.size;
+        }
+        else{
             status = "Free";
+            free+=item.size;
+        }
         printf("Seg %d: Size (%ld) - ", index, item.size);
         std::cout << status << std::endl;
         index++;
     }
-    printf("\n");
+    printf("Filled: %d, Free: %d\n", (int) filled, (int) free);
 }
 
 
@@ -221,6 +229,10 @@ void *fakeCalloc(size_t nmemb, size_t size){
     if (size <= 0 || nmemb <= 0)
         return nullptr;
     int fullSize = nmemb * size;
+    char *allocated = (char*) fakeMalloc(fullSize);
+    for (int i=0; i<fullSize; i++)
+        allocated[i] = '\0';
+
     return nullptr;
 }
 
@@ -228,7 +240,16 @@ void *fakeCalloc(size_t nmemb, size_t size){
 // alloc().  Otherwise, or if free(ptr) has already been called before, undefined behavior occurs.  If ptr is NULL, no operation is performed.
 void fakeFree(void* ptr){
     if (ptr != nullptr){
-
+        size_t shift = (size_t) (static_cast<char*>(ptr) - static_cast<char*>(space));
+        for (auto item = heap.begin(); item != heap.end(); ++item) {
+            mem seg = *item;
+            if (seg.shift == shift && seg.isAllocated){
+                seg.isAllocated = false;
+                item = heap.erase(item);
+                item = heap.insert(item, seg);
+                break;
+            }
+        }
     }
 }
 

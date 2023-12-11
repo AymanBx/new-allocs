@@ -2,11 +2,11 @@
 #define REPLACEMENT_MANAGER_H
 
 
+#define EMPTY_HEAP                      0
 #define FIRST_FIT   					100
 #define BEST_FIT    					200
 #define WORST_FIT    					300
-#define ALGORITHM_CHOICE 				BEST_FIT
-#define EMPTY_HEAP                      0
+#define ALGORITHM_CHOICE 				FIRST_FIT
 
 
 

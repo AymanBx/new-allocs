@@ -20,6 +20,7 @@ void *myMalloc(std::size_t size){
     void *pointer = fakeMalloc(size);
 
     #if REPLACEMENT_MANAGER_VERBOSE
+        printf("\nMALLOC:");
         printHeapMap();
     #endif
 
@@ -35,6 +36,7 @@ void *myCalloc(std::size_t nmemb, std::size_t size){
     void * pointer = fakeCalloc(nmemb, size);
 
     #if REPLACEMENT_MANAGER_VERBOSE
+        printf("\nCALLOC:");
         printHeapMap();
     #endif
 
@@ -48,6 +50,7 @@ void myFree(void* ptr){
         fakeFree(ptr);
     }
     #if REPLACEMENT_MANAGER_VERBOSE
+        printf("\nFREE:");
         printHeapMap();
     #endif
 }
