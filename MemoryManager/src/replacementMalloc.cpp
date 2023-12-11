@@ -25,8 +25,8 @@ void terminateFakeHeap(bool verbose){
 }
 
 
-// The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.
-// The memory is not initialized.
+/// The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.
+/// The memory is not initialized.
 void *myMalloc(std::size_t size){
     if (size <= 0)
         return nullptr;
@@ -41,8 +41,8 @@ void *myMalloc(std::size_t size){
     return pointer;
 }
 
-// allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
-// The memory is set to zero.
+/// allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
+/// The memory is set to zero.
 void *myCalloc(std::size_t nmemb, std::size_t size){
     if (size <= 0 || nmemb <= 0)
         return nullptr;
@@ -57,8 +57,8 @@ void *myCalloc(std::size_t nmemb, std::size_t size){
     return pointer;
 }
 
-// The free() function frees the memory space pointed to by ptr, which must have been returned by a previous call to malloc(), calloc(), or re‐
-// alloc().  Otherwise, or if free(ptr) has already been called before, undefined behavior occurs.  If ptr is NULL, no operation is performed.
+/// The free() function frees the memory space pointed to by ptr, which must have been returned by a previous call to malloc(), calloc(), or re‐
+/// alloc().  Otherwise, or if free(ptr) has already been called before, undefined behavior occurs.  If ptr is NULL, no operation is performed.
 void myFree(void* ptr){
     if (ptr != nullptr){
         fakeFree(ptr);

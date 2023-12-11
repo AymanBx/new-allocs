@@ -20,7 +20,6 @@ extern std::list<mem> heap;
 // bool initialized = initHeap(true);
 
 
-// yoyoyo
 bool initHeap(bool verbose){
     space = (void*) malloc(HEAPSIZE);
     #if EMPTY_HEAP
@@ -57,10 +56,10 @@ bool initHeap(bool verbose){
 }
 
 
-// prints out a “heap
-// map” giving the list of allocated and free space on your heap.
-// Add a “verbose” state variable to your memory manager so that when in “verbose” mode the
-// memory manager prints the heap map following each memory allocating or freeing operation.
+/// prints out a “heap
+/// map” giving the list of allocated and free space on your heap.
+/// Add a “verbose” state variable to your memory manager so that when in “verbose” mode the
+/// memory manager prints the heap map following each memory allocating or freeing operation.
 void printHeapMap(){
     printf("\nMemory Status:\nSize: %d\n", HEAPSIZE);
     int index=0;
@@ -82,8 +81,8 @@ void printHeapMap(){
 }
 
 
-// The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.
-// The memory is not initialized.
+/// The  malloc()  function  allocates  size bytes and returns a pointer to the allocated memory.
+/// The memory is not initialized.
 void *fakeMalloc(size_t size){
     // The pointer to the allocated memory
     void* requested = nullptr;
@@ -209,8 +208,8 @@ void *fakeMalloc(size_t size){
     return requested;
 }
 
-// allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
-// The memory is set to zero.
+/// allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
+/// The memory is set to zero.
 void *fakeCalloc(size_t nmemb, size_t size){
     if (size <= 0 || nmemb <= 0)
         return nullptr;
@@ -222,8 +221,8 @@ void *fakeCalloc(size_t nmemb, size_t size){
     return nullptr;
 }
 
-// The free() function frees the memory space pointed to by ptr, which must have been returned by a previous call to malloc(), calloc(), or re‐
-// alloc().  Otherwise, or if free(ptr) has already been called before, undefined behavior occurs.  If ptr is NULL, no operation is performed.
+/// The free() function frees the memory space pointed to by ptr, which must have been returned by a previous call to malloc(), calloc(), or re‐
+/// alloc().  Otherwise, or if free(ptr) has already been called before, undefined behavior occurs.  If ptr is NULL, no operation is performed.
 void fakeFree(void* ptr){
     if (ptr != nullptr){
         size_t shift = (size_t) (static_cast<char*>(ptr) - static_cast<char*>(space));
