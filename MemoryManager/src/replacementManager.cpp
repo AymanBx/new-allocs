@@ -95,7 +95,7 @@ void *fakeMalloc(size_t size){
     // To comapare available sizes
     size_t best=HEAPSIZE+1, worst=0;
     // To hold the indecies of best and worst segments
-    int smallest_index=0, largest_index=0;
+    int smallest_index=-1, largest_index=-1;
 
     // Search for available segments
     int index = 0;
@@ -104,6 +104,7 @@ void *fakeMalloc(size_t size){
 
         // Catch an available memory segment
         if (!item.isAllocated && item.size >= size){
+        printf("Comparing item. its size: %ld. required: %ld\n", item.size, size);
             // In case of a perfect fit
             // Allocate and return the pointer immedietly
             if (item.size == size){
@@ -152,7 +153,7 @@ void *fakeMalloc(size_t size){
     }
 
     #if ALGORITHM_CHOICE == WORST_FIT
-        if (largest_index != 0){
+        if (largest_index >= 0){
             // std::list<mem>::iterator it = std::next(heap.begin(), 2);
             // heap.erase(it);
             auto item = heap.begin();
@@ -169,7 +170,6 @@ void *fakeMalloc(size_t size){
                 seg.size - size,
                 seg.shift + size
             };
-
             item = heap.erase(item);
             item = heap.insert(item, newItem);
             item++;
@@ -180,7 +180,7 @@ void *fakeMalloc(size_t size){
     #endif
 
     #if ALGORITHM_CHOICE == BEST_FIT
-        if (smallest_index != 0){
+        if (smallest_index >= 0){
             auto item = heap.begin();
             std::advance(item, smallest_index);
             mem seg = *item;

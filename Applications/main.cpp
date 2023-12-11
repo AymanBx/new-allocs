@@ -28,8 +28,10 @@ int main(){
     free(something2);
     printf("5\n");
     #if USE_REPLACEMENT_MANAGER
+    #if EMPTY_HEAP
     extern void *space;
     free(static_cast<void*>(static_cast<char*>(space) + (size_t)685));
+    #endif
     #endif
     free(something0);
     printf("6\n");
@@ -41,6 +43,7 @@ int main(){
     
     
     #if USE_REPLACEMENT_MANAGER
+    #if EMPTY_HEAP
     // free(static_cast<void*>(static_cast<char*>(space) + (size_t)0));
     free(static_cast<void*>(static_cast<char*>(space) + (size_t)210));
     // free(static_cast<void*>(static_cast<char*>(space) + (size_t)230));
@@ -57,6 +60,7 @@ int main(){
     // free(static_cast<void*>(static_cast<char*>(space) + (size_t)2830));
     free(static_cast<void*>(static_cast<char*>(space) + (size_t)3290));
     // free(static_cast<void*>(static_cast<char*>(space) + (size_t)3300));
+    #endif
     #if REPLACEMENT_MANAGER_VERBOSE
     terminateFakeHeap(true);
     #else
