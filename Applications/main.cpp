@@ -6,10 +6,23 @@
 /// point, the memory manager should verify that all space allocated has been freed, and print a
 /// warning if some space was not freed.
 
+#include <cstdio>
+#include <iostream>
 #include "mallocChoice.h"
 
+using namespace std;
 
 int main(){
-    void* something = (void*) malloc(1000);
+
+
+    char* something1 = (char*) malloc(440);
+    char* something = (char*) malloc(50);
+    char* something2 = (char*) malloc(160);
+    char* something3 = (char*) malloc(450);
+
+    // free(something);
+    // free(something1);
+    // free(something2);
+    
     return 0;
 }

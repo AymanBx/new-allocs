@@ -7,7 +7,7 @@
 #ifndef HEAP_SIZE_H
 #define HEAP_SIZE_H
 
-#define HEAPSIZE	8000	// for example
+#define HEAPSIZE	3000	// for example
 
 
 #endif //	HEAP_SIZE_H
