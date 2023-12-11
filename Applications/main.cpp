@@ -14,7 +14,7 @@
 using namespace std;
 
 int main(){
-
+    extern void *space;
 
     char* something1 = (char*) malloc(440);
     char* something0 = (char*) malloc(60);
@@ -22,6 +22,7 @@ int main(){
     char* something3 = (char*) malloc(450);
 
     free(something2);
+    free(static_cast<void*>(static_cast<char*>(space) + (size_t)685));
     free(something0);
     free(something1);
     free(something3);

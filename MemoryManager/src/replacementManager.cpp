@@ -241,14 +241,56 @@ void *fakeCalloc(size_t nmemb, size_t size){
 void fakeFree(void* ptr){
     if (ptr != nullptr){
         size_t shift = (size_t) (static_cast<char*>(ptr) - static_cast<char*>(space));
+        bool previous=false,past=false;
+        mem prevSeg, pastSeg;
         for (auto item = heap.begin(); item != heap.end(); ++item) {
             mem seg = *item;
+
             if (seg.shift == shift && seg.isAllocated){
-                seg.isAllocated = false;
-                item = heap.erase(item);
-                item = heap.insert(item, seg);
+                item++;
+                pastSeg = *item;
+                item--;
+                past = !pastSeg.isAllocated;
+
+                if (!previous && !past){
+                    printf("no no\n");
+                    seg.isAllocated = false;
+                    item = heap.erase(item);
+                    item = heap.insert(item, seg);
+                }
+                else if (previous && !past){
+                    printf("yes: %ld - no\n", prevSeg.size);
+                    item = heap.erase(item);
+                    item--;
+                    item = heap.erase(item);
+                    prevSeg.size += seg.size;
+                    item = heap.insert(item, prevSeg);                    
+                }
+                else if (!previous && past){
+                    printf("no - yes: %ld\n", pastSeg.size);
+                    seg.isAllocated = false;
+                    item = heap.erase(item);
+                    item = heap.erase(item);
+                    seg.size += pastSeg.size;
+                    item = heap.insert(item, seg);
+                }
+                else{
+                    printf("yes: %ld - yes: %ld\n", prevSeg.size, pastSeg.size);
+                    item = heap.erase(item);
+                    item = heap.erase(item);
+                    item--;
+                    item = heap.erase(item);
+                    prevSeg.size += seg.size + pastSeg.size;
+                    item = heap.insert(item, prevSeg);
+                }
                 break;
             }
+            else if (!seg.isAllocated){
+                previous = true;
+                prevSeg = *item;
+            }
+            else if (seg.isAllocated)
+                previous = false;
         }
     }
 }

@@ -48,11 +48,11 @@ void *myCalloc(std::size_t nmemb, std::size_t size){
 void myFree(void* ptr){
     if (ptr != nullptr){
         fakeFree(ptr);
+        #if REPLACEMENT_MANAGER_VERBOSE
+            printf("\nFREE:");
+            printHeapMap();
+        #endif
     }
-    #if REPLACEMENT_MANAGER_VERBOSE
-        printf("\nFREE:");
-        printHeapMap();
-    #endif
 }
 
 

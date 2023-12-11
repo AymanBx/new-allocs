@@ -6,7 +6,7 @@
 #define FIRST_FIT   					100
 #define BEST_FIT    					200
 #define WORST_FIT    					300
-#define ALGORITHM_CHOICE 				FIRST_FIT
+#define ALGORITHM_CHOICE 				WORST_FIT
 
 
 
